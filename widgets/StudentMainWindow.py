@@ -62,7 +62,6 @@ class Ui_StudentMainWindow(object):
         self.actionExit.setObjectName("actionExit")
         self.menuFIle.addAction(self.actionExit)
         self.menubar.addAction(self.menuFIle.menuAction())
-
         self.retranslateUi(StudentMainWindow)
         QtCore.QMetaObject.connectSlotsByName(StudentMainWindow)
 
@@ -82,6 +81,8 @@ if __name__ == "__main__":
     StudentMainWindow = QtWidgets.QMainWindow()
     ui = Ui_StudentMainWindow()
     ui.setupUi(StudentMainWindow)
+    StudentMainWindow.showMaximized()
+    StudentMainWindow.setFixedSize(StudentMainWindow.width(), StudentMainWindow.height())
     StudentMainWindow.show()
     sys.exit(app.exec_())
 
