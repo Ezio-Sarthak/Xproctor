@@ -37,6 +37,7 @@ class Ui_TeacherMainWindow(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.submitQPaper = QtWidgets.QPushButton(self.centralwidget)
         self.submitQPaper.setObjectName("submitQPaper")
+        self.submitQPaper.clicked.connect(self.uploadQPaper)
         self.horizontalLayout.addWidget(self.submitQPaper)
         spacerItem1 = QtWidgets.QSpacerItem(28, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
@@ -67,6 +68,10 @@ class Ui_TeacherMainWindow(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = App()
         self.filePath.setText(self.ui.file_name)
+
+    def uploadQPaper(self):
+        # Code for paper encryption
+        print('Code encryption here!!')
 
     def retranslateUi(self, TeacherMainWindow):
         _translate = QtCore.QCoreApplication.translate

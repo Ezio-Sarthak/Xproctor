@@ -8,6 +8,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from FileOpenDialog import App
+from StudentMainWindow import Ui_StudentMainWindow
+import numpy as np
+import cv2, sys
 
 class Ui_SelectExam(object):
     def setupUi(self, MainWindow):
@@ -51,10 +54,6 @@ class Ui_SelectExam(object):
         self.verticalLayout_2.addLayout(self.verticalLayout)
         spacerItem = QtWidgets.QSpacerItem(20, 28, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_2.addItem(spacerItem)
-        self.selectCamera = QtWidgets.QPushButton(self.widget1)
-        self.selectCamera.setObjectName("selectCamera")
-        self.selectCamera.pressed.connect(self.selectCameraOnClick)
-        self.verticalLayout_2.addWidget(self.selectCamera)
         self.widget2 = QtWidgets.QWidget(self.centralwidget)
         self.widget2.setGeometry(QtCore.QRect(2, 400, 790, 25))
         self.widget2.setObjectName("widget2")
@@ -65,6 +64,8 @@ class Ui_SelectExam(object):
         self.horizontalLayout_3.addItem(spacerItem1)
         self.pushButton = QtWidgets.QPushButton(self.widget2)
         self.pushButton.setObjectName("pushButton")
+        self.main_window = MainWindow
+        self.pushButton.clicked.connect(self.startExam)
         self.horizontalLayout_3.addWidget(self.pushButton)
         self.filePath = QtWidgets.QLabel(self.centralwidget)
         self.filePath.setGeometry(QtCore.QRect(140, 210, 531, 16))
@@ -89,17 +90,14 @@ class Ui_SelectExam(object):
         self.ui = App()
         self.filePath.setText(self.ui.file_name)
 
-    def selectCameraOnClick(self):
-        self.available_cameras = QCameraInfo.availableCameras()
-        if not self.available_cameras:
-            pass #quit
-
-        self.viewfinder = QCameraViewfinder()
-        self.viewfinder.show()
-        self.setCentralWidget(self.viewfinder)
-
-        # Set the default camera.
-        self.select_camera(0)
+    def startExam(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_StudentMainWindow()
+        self.ui.setupUi(self.window)
+        self.main_window.hide()
+        self.window.showMaximized()
+        self.window.setFixedSize(self.window.width(), self.window.height())
+        self.window.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -108,12 +106,10 @@ class Ui_SelectExam(object):
         self.label_2.setText(_translate("MainWindow", "Select question paper PDF"))
         self.toolButton.setText(_translate("MainWindow", "..."))
         self.label_3.setText(_translate("MainWindow", "Enter password:"))
-        self.selectCamera.setText(_translate("MainWindow", "Select Camera"))
         self.pushButton.setText(_translate("MainWindow", "Take exam"))
 
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_SelectExam()
