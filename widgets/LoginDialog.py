@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from SelectExam import Ui_SelectExam
 
 class Ui_LoginDialog(object):
     def setupUi(self, LoginDialog):
@@ -49,6 +50,8 @@ class Ui_LoginDialog(object):
         self.gridLayout_2.addWidget(self.frame, 4, 0, 1, 3)
         self.submitButton = QtWidgets.QPushButton(LoginDialog)
         self.submitButton.setObjectName("submitButton")
+        self.submitButton.clicked.connect(self.openExamsDialog)
+        self.login_dialog = LoginDialog
         self.gridLayout_2.addWidget(self.submitButton, 6, 1, 1, 1)
         spacerItem3 = QtWidgets.QSpacerItem(172, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem3, 6, 2, 1, 1)
@@ -63,6 +66,13 @@ class Ui_LoginDialog(object):
 
         self.retranslateUi(LoginDialog)
         QtCore.QMetaObject.connectSlotsByName(LoginDialog)
+
+    def openExamsDialog(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_SelectExam()
+        self.ui.setupUi(self.window)
+        self.login_dialog.hide()
+        self.window.show()
 
     def retranslateUi(self, LoginDialog):
         _translate = QtCore.QCoreApplication.translate

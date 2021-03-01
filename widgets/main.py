@@ -23,11 +23,11 @@ class Ui_IdentityConfirmationDialog(object):
         self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
         self.studentButton = QtWidgets.QPushButton(IdentityConfirmationDialog)
         self.studentButton.setObjectName("studentButton")
-        self.studentButton.pressed.connect(self.openStudentLoginWindow)
+        self.studentButton.clicked.connect(self.openStudentLoginWindow)
         self.gridLayout.addWidget(self.studentButton, 1, 0, 1, 1)
         self.teacherButton = QtWidgets.QPushButton(IdentityConfirmationDialog)
         self.teacherButton.setObjectName("teacherButton")
-        self.teacherButton.pressed.connect(self.openTeacherLoginWindow)
+        self.teacherButton.clicked.connect(self.openTeacherWindow)
         self.gridLayout.addWidget(self.teacherButton, 1, 2, 1, 1)
 
         self.retranslateUi(IdentityConfirmationDialog)
@@ -49,11 +49,11 @@ class Ui_IdentityConfirmationDialog(object):
         IdentityConfirmationDialog.hide()
         self.window.show()
 
-    def openTeacherLoginWindow(self):
-        self.window = QtWidgets.QWidget()
+    def openTeacherWindow(self):
+        self.window = QtWidgets.QMainWindow()
         self.type = 'teacher'
         # The type needs to be sent
-        self.ui = Ui_LoginDialog()
+        self.ui = Ui_TeacherMainWindow()
         self.ui.setupUi(self.window)
         IdentityConfirmationDialog.hide()
         self.window.show()

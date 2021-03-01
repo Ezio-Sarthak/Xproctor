@@ -7,9 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtMultimediaWidgets import QCameraInfo, QCameraViewfinder
+from FileOpenDialog import App
 
-class Ui_MainWindow(object):
+class Ui_SelectExam(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(790, 580)
@@ -32,9 +32,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.label_2)
         self.toolButton = QtWidgets.QToolButton(self.widget)
         self.toolButton.setObjectName("toolButton")
+        self.toolButton.clicked.connect(self.uploadFileWindow)
         self.horizontalLayout.addWidget(self.toolButton)
         self.widget1 = QtWidgets.QWidget(self.centralwidget)
-        self.widget1.setGeometry(QtCore.QRect(140, 220, 129, 111))
+        self.widget1.setGeometry(QtCore.QRect(140, 240, 129, 111))
         self.widget1.setObjectName("widget1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget1)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -65,6 +66,10 @@ class Ui_MainWindow(object):
         self.pushButton = QtWidgets.QPushButton(self.widget2)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_3.addWidget(self.pushButton)
+        self.filePath = QtWidgets.QLabel(self.centralwidget)
+        self.filePath.setGeometry(QtCore.QRect(140, 210, 531, 16))
+        self.filePath.setText("")
+        self.filePath.setObjectName("filePath")
         spacerItem2 = QtWidgets.QSpacerItem(348, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem2)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -78,6 +83,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def uploadFileWindow(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = App()
+        self.filePath.setText(self.ui.file_name)
 
     def selectCameraOnClick(self):
         self.available_cameras = QCameraInfo.availableCameras()
@@ -106,7 +116,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_SelectExam()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
