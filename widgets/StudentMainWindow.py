@@ -10,7 +10,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import os, sys, cv2
 from datetime import datetime
 from threading import Timer
-import pyscreenshot
+import pyscreenshot, qpageview
+
 
 class Ui_StudentMainWindow(object):
     def setupUi(self, StudentMainWindow):
@@ -33,8 +34,6 @@ class Ui_StudentMainWindow(object):
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        spacerItem1 = QtWidgets.QSpacerItem(58, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem1)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(20, 437, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
